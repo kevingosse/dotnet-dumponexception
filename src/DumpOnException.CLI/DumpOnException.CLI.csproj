@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net50</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DumpOnException.StartupHook\DumpOnException.StartupHook.csproj" />
+	</ItemGroup>
+
+</Project>
