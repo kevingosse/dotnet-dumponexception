@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+	  <Version>0.0.1</Version>
+	  <Title>Dotnet DumpOnException</Title>
+	  <Copyright>Copyright 2020 ...</Copyright>
+  </PropertyGroup>
+</Project>
