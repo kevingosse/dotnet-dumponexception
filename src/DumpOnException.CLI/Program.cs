@@ -26,6 +26,8 @@ namespace DumpOnException.CLI
         {
             // Process options
             
+            //DOTNET_STARTUP_HOOKS
+            
             return 0;
         }
 
