@@ -25,6 +25,13 @@ namespace DumpOnException.CLI
         private static int ParsedOptions(Options options)
         {
             // Process options
+
+            string asmLocation = typeof(StartupHook.Diagnostics.DiagnosticsClient).Assembly.Location;
+            string[] cmdLineArgs = Environment.GetCommandLineArgs();
+            string cmd = cmdLineArgs[1];
+            string[] args = cmdLineArgs.Skip(2).ToArray();
+            
+            Console.WriteLine(asmLocation);
             
             //DOTNET_STARTUP_HOOKS
             
