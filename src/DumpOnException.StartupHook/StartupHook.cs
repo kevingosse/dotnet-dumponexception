@@ -40,8 +40,8 @@ internal class StartupHook
     {
         try
         {
-            _client ??= new DiagnosticsClient(Settings.ProcessId);
             string path = Path.Combine(Settings.Directory, $"Dump_{exception.GetType().Name}_{++_count}_{Settings.ProcessId}.dmp");
+            _client ??= new DiagnosticsClient(Settings.ProcessId);
             _client.WriteDump(DumpType.Full, path, true);
         }
         catch(Exception ex)
