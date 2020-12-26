@@ -11,8 +11,8 @@ namespace DumpOnException.CLI
         {
             get
             {
-                yield return new Example("Example 1", UnParserSettings.WithUseEqualTokenOnly(), new Options { Value = new string[] { "test" } });
-                yield return new Example("Example 2", UnParserSettings.WithUseEqualTokenOnly(), new Options { Filter = "(A|B|C)", Value = new string[] { "test" } });
+                yield return new Example("Creating dump for each exception.", UnParserSettings.WithUseEqualTokenOnly(), new Options { Value = new string[] { "dotnet run" } });
+                yield return new Example("Filter exception before creating a memory dump", UnParserSettings.WithUseEqualTokenOnly(), new Options { Filter = "^DivideByZeroException$", Value = new string[] { "dotnet run" } });
             }
         }
 
