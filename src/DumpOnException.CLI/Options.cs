@@ -20,6 +20,9 @@ namespace DumpOnException.CLI
             }
         }
 
+        [Option('a', "attach", Required = false, HelpText = "Attach the debugger when the exception happens.")]
+        public bool AttachDebugger { get; set; } = false;
+
         [Option('f', "filter", Required = false, HelpText = "Applies a regex exception filter to trigger the dump.")]
         public string Filter { get; set; } = string.Empty;
 
