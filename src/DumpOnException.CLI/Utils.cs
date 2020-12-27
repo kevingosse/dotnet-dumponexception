@@ -13,7 +13,6 @@ namespace DumpOnException.CLI
             ProcessStartInfo processInfo = new ProcessStartInfo(filename)
             {
                 UseShellExecute = false,
-                CreateNoWindow = false,
                 WorkingDirectory = Environment.CurrentDirectory,
             };
 
