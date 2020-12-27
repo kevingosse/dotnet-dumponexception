@@ -12,11 +12,8 @@ namespace DumpOnException.CLI
         {
             ProcessStartInfo processInfo = new ProcessStartInfo(filename)
             {
-                RedirectStandardError = true,
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true,
                 UseShellExecute = false,
-                CreateNoWindow = true,
+                CreateNoWindow = false,
                 WorkingDirectory = Environment.CurrentDirectory,
             };
 
@@ -42,30 +39,14 @@ namespace DumpOnException.CLI
                 using (Process childProcess = new Process())
                 {
                     childProcess.StartInfo = startInfo;
-                    childProcess.OutputDataReceived += (sender, e) =>
-                    {
-                        if (e.Data != null)
-                            Console.WriteLine(e.Data);
-                    };
-                    childProcess.ErrorDataReceived += (sender, e) =>
-                    {
-                        if (e.Data != null)
-                            Console.Error.WriteLine(e.Data);
-                    };
                     childProcess.EnableRaisingEvents = true;
                     childProcess.Start();
-                    childProcess.BeginOutputReadLine();
-                    childProcess.BeginErrorReadLine();
 
                     using (cancellationToken.Register(() =>
                     {
                         try
                         {
-                            if (childProcess != null)
-                            {
-                                childProcess.StandardInput.Close();
-                                childProcess.Kill();
-                            }
+                            childProcess.Kill();
                         }
                         catch
                         {
