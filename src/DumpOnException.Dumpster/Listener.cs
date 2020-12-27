@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Threading;
@@ -29,6 +30,10 @@ namespace DumpOnException.Dumpster
             {
                 try
                 {
+                    if (Settings.AttachDebugger && Debugger.Launch())
+                    {
+                        Debugger.Break();
+                    }
                     CreateDump(e.Exception);
                 }
                 finally
