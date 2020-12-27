@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using DumpOnException.StartupHook;
 
 // ReSharper disable once CheckNamespace
@@ -12,8 +11,6 @@ internal class StartupHook
 
     public static void Initialize()
     {
-        Console.WriteLine("Loaded startup hook");
-
         var loadContext = new StartupAssemblyLoadContext();
 
         var assembly = loadContext.LoadFromAssemblyName(new AssemblyName("DumpOnException.Dumpster"));
