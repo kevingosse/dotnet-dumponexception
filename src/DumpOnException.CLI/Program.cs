@@ -34,7 +34,7 @@ namespace DumpOnException.CLI
         private static int ParsedOptions(Options options)
         {
             // Process options
-            string asmLocation = typeof(StartupHook.Diagnostics.DiagnosticsClient).Assembly.Location;
+            string asmLocation = typeof(global::StartupHook).Assembly.Location;
             string cmd = options.Value.FirstOrDefault();
             string[] args = options.Value.Skip(1).ToArray();
 
