@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;net50</TargetFrameworks>
+		<TargetFrameworks>netcoreapp3.0;netcoreapp3.1;net50</TargetFrameworks>
 		<ToolCommandName>dotnet-dumponexception</ToolCommandName>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
