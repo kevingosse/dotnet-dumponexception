@@ -1,12 +1,14 @@
 ﻿using System.Reflection;
 using DumpOnException.StartupHook;
 
+// ReSharper disable UnusedMember.Global
 // ReSharper disable once CheckNamespace
+// ReSharper disable InconsistentNaming
 internal class StartupHook
 {
     // ReSharper disable once NotAccessedField.Local
 #pragma warning disable IDE0052 // Remove unread private members
-    private static object Listener;
+    private static object? Listener;
 #pragma warning restore IDE0052 // Remove unread private members
 
     public static void Initialize()

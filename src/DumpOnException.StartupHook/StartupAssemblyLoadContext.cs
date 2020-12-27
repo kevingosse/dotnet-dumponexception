@@ -14,14 +14,14 @@ namespace DumpOnException.StartupHook
 
         protected override Assembly Load(AssemblyName assemblyName)
         {
-            string assemblyPath = _resolver.ResolveAssemblyToPath(assemblyName);
+            string? assemblyPath = _resolver.ResolveAssemblyToPath(assemblyName);
 
             if (assemblyPath != null)
             {
                 return LoadFromAssemblyPath(assemblyPath);
             }
 
-            return null;
+            return null!;
         }
     }
 }
