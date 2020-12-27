@@ -2,14 +2,14 @@
 using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Threading;
-using DumpOnException.StartupHook;
 using Microsoft.Diagnostics.NETCore.Client;
+// ReSharper disable UnusedType.Global
 
 namespace DumpOnException.Dumpster
 {
     internal class Listener
     {
-        private static DiagnosticsClient _client;
+        private static DiagnosticsClient? _client;
         private static int _count;
         private static int _running;
     

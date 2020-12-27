@@ -1,15 +1,16 @@
 using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+// ReSharper disable MemberCanBePrivate.Global
 
-namespace DumpOnException.StartupHook
+namespace DumpOnException.Dumpster
 {
     internal static class Settings
     {
-        public static int ProcessId { get; private set; }
-        public static string Filter { get; private set; }
-        public static string Directory { get; private set; }
-        public static Regex FilterRegex { get; private set; }
+        public static int ProcessId { get; }
+        public static string Filter { get; }
+        public static string Directory { get; }
+        public static Regex FilterRegex { get; }
 
         static Settings()
         {

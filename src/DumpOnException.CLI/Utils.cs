@@ -6,24 +6,27 @@ using System.Threading;
 
 namespace DumpOnException.CLI
 {
-    internal class Utils
+    internal static class Utils
     {
-        public static ProcessStartInfo GetProcessStartInfo(string filename, IDictionary<string, string> environmentVariables)
+        public static ProcessStartInfo GetProcessStartInfo(string filename, IDictionary<string, string?>? environmentVariables)
         {
-            ProcessStartInfo processInfo = new ProcessStartInfo(filename)
+            ProcessStartInfo processInfo = new(filename)
             {
                 UseShellExecute = false,
                 WorkingDirectory = Environment.CurrentDirectory,
             };
 
-            foreach (DictionaryEntry item in Environment.GetEnvironmentVariables())
+            foreach (object? item in Environment.GetEnvironmentVariables())
             {
-                processInfo.Environment[item.Key.ToString()] = item.Value.ToString();
+                if (item is DictionaryEntry entry)
+                {
+                    processInfo.Environment[entry.Key.ToString() ?? string.Empty] = entry.Value?.ToString() ?? string.Empty;
+                }
             }
 
             if (environmentVariables != null)
             {
-                foreach (KeyValuePair<string, string> item in environmentVariables)
+                foreach (KeyValuePair<string, string?> item in environmentVariables)
                 {
                     processInfo.Environment[item.Key] = item.Value;
                 }
@@ -35,7 +38,7 @@ namespace DumpOnException.CLI
         {
             try
             {
-                using (Process childProcess = new Process())
+                using (Process childProcess = new())
                 {
                     childProcess.StartInfo = startInfo;
                     childProcess.EnableRaisingEvents = true;
@@ -64,6 +67,17 @@ namespace DumpOnException.CLI
             }
 
             return -1;
+        }
+        public static string GetEnvironmentValue(string name, string defaultValue)
+        {
+            try
+            {
+                return Environment.GetEnvironmentVariable(name) ?? defaultValue;
+            }
+            catch
+            {
+                return defaultValue;
+            }
         }
     }
 }
