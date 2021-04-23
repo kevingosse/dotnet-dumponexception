@@ -13,7 +13,7 @@ namespace DumpOnException.Dumpster
         private static DiagnosticsClient? _client;
         private static int _count;
         private static int _running;
-        private static Timer _memoryThresholdTimer;
+        private static Thread _memoryThresholdThread;
         private static Process _currentProcess;
     
         public Listener()
@@ -23,15 +23,24 @@ namespace DumpOnException.Dumpster
             if (Settings.MemoryThreshold > 0)
             {
                 _currentProcess = Process.GetCurrentProcess();
-                _memoryThresholdTimer = new Timer(state =>
+                _memoryThresholdThread = new Thread(() =>
                 {
-                    _currentProcess.Refresh();
-
-                    if (_currentProcess.PrivateMemorySize64 >= Settings.MemoryThreshold)
+                    while (true)
                     {
-                        WriteDump("Memory_Threshold");
+                        Thread.Sleep(TimeSpan.FromMinutes(1));
+                        
+                        _currentProcess.Refresh();
+                        
+                        // MemoryThreshold in Megabytes, 1MB = 1048576 bytes (windows)
+                        if (_currentProcess.PrivateMemorySize64 >= ((long)Settings.MemoryThreshold) * 1048576)
+                        {
+                            WriteDump("Memory_Threshold");
+                        }
                     }
-                }, null, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(30));
+                });
+                _memoryThresholdThread.IsBackground = true;
+                _memoryThresholdThread.Name = "MemoryThreshold Thread";
+                _memoryThresholdThread.Start();
             }
         }
 
