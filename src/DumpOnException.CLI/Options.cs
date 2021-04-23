@@ -29,6 +29,9 @@ namespace DumpOnException.CLI
         [Option('d', "directory", Required = false, HelpText = "Sets the folder destination of the dump.")]
         public string Directory { get; set; } = string.Empty;
 
+        [Option('t', "threshold", Required = false, HelpText = "Sets the memory threshold to create a dump.")]
+        public int MemoryThreshold { get; set; } = 0;
+
         [Value(0, Hidden = true, Required = true, HelpText = "Command to be wrapped by the cli tool.")]
         public IEnumerable<string> Value { get; set; } = Enumerable.Empty<string>();
     }
