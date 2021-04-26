@@ -12,6 +12,7 @@ namespace DumpOnException.Dumpster
         public static string Directory { get; }
         public static Regex FilterRegex { get; }
         public static bool AttachDebugger { get; }
+        public static int MemoryThreshold { get; }
 
         static Settings()
         {
@@ -20,6 +21,12 @@ namespace DumpOnException.Dumpster
             Directory = GetEnvironmentValue("DOE_DIRECTORY", string.Empty);
             AttachDebugger = GetEnvironmentValue("DOE_ATTACH", "0") == "1";
             FilterRegex = new Regex(Filter, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+            string strMemoryThreshold = GetEnvironmentValue("DOE_MEMTHRESHOLD", string.Empty);
+            if (int.TryParse(strMemoryThreshold, out int memThreshold))
+            {
+                MemoryThreshold = memThreshold;
+            }
 
             static string GetEnvironmentValue(string name, string defaultValue)
             {

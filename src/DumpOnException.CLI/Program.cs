@@ -55,6 +55,7 @@ namespace DumpOnException.CLI
                 ["DOTNET_STARTUP_HOOKS"] = stHooks,
                 ["DOE_FILTER"] = options.Filter,
                 ["DOE_DIRECTORY"] = options.Directory,
+                ["DOE_MEMTHRESHOLD"] = options.MemoryThreshold.ToString(),
                 ["DOE_ATTACH"] = options.AttachDebugger ? "1" : "0",
             };
             
