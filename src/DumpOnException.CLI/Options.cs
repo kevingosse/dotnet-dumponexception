@@ -32,6 +32,9 @@ namespace DumpOnException.CLI
         [Option('t', "threshold", Required = false, HelpText = "Sets the memory threshold in megabytes to create a dump.")]
         public int MemoryThreshold { get; set; } = 0;
 
+        [Option('p', "periodic-min", Required = false, HelpText = "Sets the periodic timeout in minutes to create a dump.")]
+        public int PeriodicDumpInMinutes { get; set; } = 0;
+        
         [Value(0, Hidden = true, Required = true, HelpText = "Command to be wrapped by the cli tool.")]
         public IEnumerable<string> Value { get; set; } = Enumerable.Empty<string>();
     }
