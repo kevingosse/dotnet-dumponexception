@@ -56,6 +56,7 @@ namespace DumpOnException.CLI
                 ["DOE_FILTER"] = options.Filter,
                 ["DOE_DIRECTORY"] = options.Directory,
                 ["DOE_MEMTHRESHOLD"] = options.MemoryThreshold.ToString(),
+                ["DOE_PERIODICMIN"] = options.PeriodicDumpInMinutes.ToString(),
                 ["DOE_ATTACH"] = options.AttachDebugger ? "1" : "0",
             };
             

@@ -13,6 +13,7 @@ namespace DumpOnException.Dumpster
         public static Regex FilterRegex { get; }
         public static bool AttachDebugger { get; }
         public static int MemoryThreshold { get; }
+        public static int PeriodicDumpInMinutes { get; }
 
         static Settings()
         {
@@ -26,6 +27,12 @@ namespace DumpOnException.Dumpster
             if (int.TryParse(strMemoryThreshold, out int memThreshold))
             {
                 MemoryThreshold = memThreshold;
+            }
+
+            string strPeriodicDumpInMinutes = GetEnvironmentValue("DOE_PERIODICMIN", string.Empty);
+            if (int.TryParse(strPeriodicDumpInMinutes, out int intPeriodicDumpInMinutes))
+            {
+                PeriodicDumpInMinutes = intPeriodicDumpInMinutes;
             }
 
             static string GetEnvironmentValue(string name, string defaultValue)

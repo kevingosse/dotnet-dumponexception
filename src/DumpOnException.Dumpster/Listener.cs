@@ -25,9 +25,19 @@ namespace DumpOnException.Dumpster
                 _currentProcess = Process.GetCurrentProcess();
                 _memoryThresholdThread = new Thread(() =>
                 {
+                    int currentMin = 0;
                     while (true)
                     {
                         Thread.Sleep(TimeSpan.FromMinutes(1));
+                        currentMin++;
+
+                        // If a periodic dump is set, and the threshold was reached
+                        if (Settings.PeriodicDumpInMinutes > 0 && currentMin >= Settings.PeriodicDumpInMinutes)
+                        {
+                            currentMin = 0;
+                            WriteDump("Periodic_Dump");
+                            continue;
+                        }
                         
                         _currentProcess.Refresh();
                         
