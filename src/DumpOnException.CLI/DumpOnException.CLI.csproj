@@ -7,6 +7,14 @@
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>dotnet-dumponexception</ToolCommandName>
+		<NoWarn>NU5100</NoWarn>
+		<PackageId>dotnet-dumponexception</PackageId>
+		<Description>Dump on exception dotnet tool</Description>
+		<Version>0.1.0</Version>
+		<Authors>Kevin Gosse, Tony Redondo</Authors>
+		<PackageLicenseUrl>https://raw.githubusercontent.com/kevingosse/dotnet-dumponexception/main/LICENSE</PackageLicenseUrl>
+		<Copyright>Copyright 2021</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
